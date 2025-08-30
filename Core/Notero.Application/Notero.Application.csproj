@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Notero.Domain\Notero.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
