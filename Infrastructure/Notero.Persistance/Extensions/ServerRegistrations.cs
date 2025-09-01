@@ -16,7 +16,6 @@ namespace Notero.Persistance.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
             }); 
 
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>),typeof(GenericRepository<>));
         }   
