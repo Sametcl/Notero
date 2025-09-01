@@ -1,10 +1,14 @@
-﻿namespace Notero.Application.Base
+﻿using System.Text.Json.Serialization;
+
+namespace Notero.Application.Base
 {
     public class BaseResult<T>
     {
         public T? Data { get; set; }
         public IEnumerable<Error>? Errors { get; set; }
+        [JsonIgnore]
         public bool IsSuccess => Errors == null || !Errors.Any();
+        [JsonIgnore]
         public bool IsFailure => !IsSuccess;
 
 

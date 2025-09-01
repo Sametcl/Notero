@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Notero.Application.Extensions
@@ -9,6 +10,8 @@ namespace Notero.Application.Extensions
         {
             var assembly = Assembly.GetExecutingAssembly();
             services.AddAutoMapper(cfg => cfg.AddMaps(assembly)); 
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+            services.AddValidatorsFromAssembly(assembly);
         }
     }
 }
