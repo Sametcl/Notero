@@ -2,6 +2,7 @@ using Notero.Persistance.Extensions;
 using Notero.Application.Extensions;
 using Notero.API.Endpoints.Registration;
 using Scalar.AspNetCore;
+using Notero.API.CustomMiddlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +20,14 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
-
+app.UseMiddleware<CustomExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
+// endpoint 
 app.MapGroup("/api")
     .RegisterEndpoints();
 
