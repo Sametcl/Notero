@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Notero.Application.Features.Categories.Commands;
 using Notero.Application.Features.Categories.Queries;
 
 namespace Notero.API.Endpoints
@@ -18,6 +19,15 @@ namespace Notero.API.Endpoints
                     return Results.Ok(response);
                 }
                 return Results.BadRequest(response);
+            });
+            categories.MapPost("", async (CreateCategoryCommand command,IMediator mediator) =>
+            {
+                var response = await mediator.Send(command);
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest();
             });
         }
     }

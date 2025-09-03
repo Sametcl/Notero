@@ -5,7 +5,7 @@ namespace Notero.API.CustomMiddlewares
 {
     public class CustomExceptionHandlingMiddleware(RequestDelegate next)
     {
-        public async Task TaskAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
