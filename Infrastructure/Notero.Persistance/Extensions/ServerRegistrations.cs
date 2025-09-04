@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Notero.Application.Contracts.Persistance;
 using Notero.Persistance.Concrete;
 using Notero.Persistance.Context;
+using Notero.Persistance.Interceptors;
 
 namespace Notero.Persistance.Extensions
 {
@@ -14,6 +15,7 @@ namespace Notero.Persistance.Extensions
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
+                options.AddInterceptors(new AuditDBContextInterceptor());
             }); 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

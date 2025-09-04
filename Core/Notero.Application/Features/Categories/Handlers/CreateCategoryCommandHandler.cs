@@ -15,7 +15,7 @@ namespace Notero.Application.Features.Categories.Handlers
             var category = mapper.Map<Category>(request);
             await repository.CreateAsync(category);
             var result= await unitOfWork.SaveChangesAsync();
-            return result ? BaseResult<bool>.Success(result) : BaseResult<bool>.Fail();
+            return result ? BaseResult<bool>.Success(result) : BaseResult<bool>.Fail("Failed to create category");
         }
     }
 }

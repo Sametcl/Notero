@@ -40,6 +40,16 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+
+            categories.MapPut("", async (UpdateCategoryCommand command, IMediator mediator) =>
+            {
+                var response = await mediator.Send(command);
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
         }
     }
 }
