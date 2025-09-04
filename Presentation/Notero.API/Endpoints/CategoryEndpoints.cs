@@ -11,16 +11,16 @@ namespace Notero.API.Endpoints
             var categories = app.MapGroup("/categories").WithTags("Categories");
 
 
-            categories.MapGet("", async(IMediator mediator) =>
+            categories.MapGet("", async (IMediator mediator) =>
             {
-                var response =await mediator.Send(new GetCategoryQuery());
+                var response = await mediator.Send(new GetCategoryQuery());
                 if (response.IsSuccess)
                 {
                     return Results.Ok(response);
                 }
                 return Results.BadRequest(response);
             });
-            categories.MapPost("", async (CreateCategoryCommand command,IMediator mediator) =>
+            categories.MapPost("", async (CreateCategoryCommand command, IMediator mediator) =>
             {
                 var response = await mediator.Send(command);
                 if (response.IsSuccess)
@@ -28,6 +28,17 @@ namespace Notero.API.Endpoints
                     return Results.Ok(response);
                 }
                 return Results.BadRequest();
+            });
+
+
+            categories.MapGet("{id}", async (Guid id, IMediator mediator) =>
+            {
+                var response = await mediator.Send(new GetCategoryByIdQuery(id));
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
             });
         }
     }

@@ -11,6 +11,7 @@ namespace Notero.Application.Features.Categories.Mappings
         {
             CreateMap<Category,GetCategoryQueryResult>().ReverseMap();
             CreateMap<Category,CreateCategoryCommand>().ReverseMap();
+            CreateMap<Category,GetCategoryByIdQueryResult>().ReverseMap();
         }
     }
 }
