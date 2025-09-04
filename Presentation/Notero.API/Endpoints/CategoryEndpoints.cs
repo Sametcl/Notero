@@ -20,6 +20,8 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+
+
             categories.MapPost("", async (CreateCategoryCommand command, IMediator mediator) =>
             {
                 var response = await mediator.Send(command);
@@ -41,9 +43,20 @@ namespace Notero.API.Endpoints
                 return Results.BadRequest(response);
             });
 
+
             categories.MapPut("", async (UpdateCategoryCommand command, IMediator mediator) =>
             {
                 var response = await mediator.Send(command);
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
+
+            categories.MapDelete("{id}", async (Guid id, IMediator mediator) =>
+            {
+                var response = await mediator.Send(new DeleteCategoryCommand(id));
                 if (response.IsSuccess)
                 {
                     return Results.Ok(response);
