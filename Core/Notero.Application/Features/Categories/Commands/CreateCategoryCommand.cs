@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Notero.Application.Features.Categories.Commands
 {
-    public record CreateCategoryCommand(string CategoryName) :IRequest<BaseResult<bool>>;
+    public record CreateCategoryCommand(string CategoryName) :IRequest<BaseResult<object>>;
 }

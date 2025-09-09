@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Notero.Application.Features.Blogs.Commands;
 using Notero.Application.Features.Blogs.Queries;
 
 namespace Notero.API.Endpoints
@@ -14,6 +16,16 @@ namespace Notero.API.Endpoints
                 if (response.IsSuccess)
                 {
                     return Results.Ok(response); 
+                }
+                return Results.BadRequest(response);
+            });
+
+            blogs.MapPost(string.Empty, async (IMediator mediator, CreateBlogCommand command) =>
+            {
+                var response = await mediator.Send(command);
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
                 }
                 return Results.BadRequest(response);
             });

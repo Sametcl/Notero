@@ -8,7 +8,7 @@ namespace Notero.Domain.Entities
         public string CoverImage { get; set; }
         public string BlogImage { get; set; }
         public string Description { get; set; }
-        public Guid CategoryId { get; set; }
+        public Guid? CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public virtual IList<Comment> Comments { get; set; }
         public string UserId { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 
 namespace Notero.Application.Base
 {
@@ -33,10 +34,18 @@ namespace Notero.Application.Base
             return new BaseResult<T>
             {
                 Errors = (from error in errors
-                          select new Error { ErrorMessage = error })
+                          select new Error {ErrorMessage = error })
             };
         }
 
+        public static BaseResult<T> Fail(IEnumerable<IdentityError> errors)
+        {
+            return new BaseResult<T>
+            {
+                Errors = (from error in errors
+                          select new Error { PropertyName = error.Code ,ErrorMessage = error.Description})
+            };
+        }
 
         public static BaseResult<T> NotFound(string message)
         {
