@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Notero.Application.Features.Blogs.Commands;
 using Notero.Application.Features.Blogs.Queries;
 
@@ -15,7 +14,17 @@ namespace Notero.API.Endpoints
                 var response = await mediator.Send(new GetBlogsQuery());
                 if (response.IsSuccess)
                 {
-                    return Results.Ok(response); 
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
+
+            blogs.MapGet("{id}", async (Guid id, IMediator mediator) =>
+            {
+                var response = await mediator.Send(new GetBlogByIdQuery(id));
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
                 }
                 return Results.BadRequest(response);
             });
