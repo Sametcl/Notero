@@ -13,6 +13,7 @@ namespace Notero.Application.Features.Blogs.Mappings
             CreateMap<Blog, CreateBlogCommand>().ReverseMap();
             CreateMap<Blog, GetBlogByIdQueryResult>().ReverseMap();
             CreateMap<Blog, UpdateBlogCommand>().ReverseMap();
+            CreateMap<Blog, GetBlogByCategoryIdQueryResult>().ReverseMap();
         }
     }
 }

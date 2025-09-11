@@ -58,6 +58,15 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+            blogs.MapGet("byCategoryId/{categoryId}" , async(Guid categorId , IMediator mediator) =>
+            {
+                var response = await mediator.Send(new GetBlogByCategoryIdQuery(categorId));
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
         }
     }
 }
