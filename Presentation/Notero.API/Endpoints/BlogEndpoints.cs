@@ -48,6 +48,16 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+
+            blogs.MapDelete("{id}", async (Guid id, IMediator mediator) =>
+            {
+                var response = await mediator.Send(new DeleteBlogCommand(id));
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
         }
     }
 }
