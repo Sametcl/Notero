@@ -38,6 +38,16 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+
+            blogs.MapPut(string.Empty, async (IMediator mediator, UpdateBlogCommand command) =>
+            {
+                var response = await mediator.Send(command);    
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
         }
     }
 }

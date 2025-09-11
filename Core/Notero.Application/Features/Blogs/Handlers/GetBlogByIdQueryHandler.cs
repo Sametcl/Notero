@@ -20,7 +20,7 @@ namespace Notero.Application.Features.Blogs.Handlers
             var blog =await repository. GetByIdAsync(request.Id);   
             if (blog == null)
             {
-                return BaseResult<GetBlogByIdQueryResult>.Fail("Blog not found");
+                return BaseResult<GetBlogByIdQueryResult>.NotFound("Blog not found");
             }
             var mappedBlog = mapper.Map<GetBlogByIdQueryResult>(blog);  
             return BaseResult<GetBlogByIdQueryResult>.Success(mappedBlog);

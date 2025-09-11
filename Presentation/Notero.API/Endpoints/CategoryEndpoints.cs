@@ -44,7 +44,7 @@ namespace Notero.API.Endpoints
             });
 
 
-            categories.MapPut("", async (UpdateCategoryCommand command, IMediator mediator) =>
+            categories.MapPut(string.Empty, async (UpdateCategoryCommand command, IMediator mediator) =>
             {
                 var response = await mediator.Send(command);
                 if (response.IsSuccess)
