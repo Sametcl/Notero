@@ -14,7 +14,7 @@ namespace Notero.Application.Features.Blogs.Handlers
         {
             var blog = mapper.Map<Blog>(request);
             await repository.CreateAsync(blog);
-            var response = await unitOfWork.SaveChangesAsync();
+            await unitOfWork.SaveChangesAsync();
             return BaseResult<object>.Success(blog);
         }
     }
