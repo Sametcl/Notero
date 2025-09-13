@@ -30,7 +30,7 @@ namespace Notero.API.Endpoints
                 return Results.BadRequest(response);
             });
 
-            comments.MapGet("{id}", async( IMediator mediator ,Guid id) =>
+            comments.MapGet("{id}", async (IMediator mediator, Guid id) =>
             {
                 var response = await mediator.Send(new GetCommentByIdQuery(id));
                 if (response.IsSuccess)
@@ -42,6 +42,15 @@ namespace Notero.API.Endpoints
             comments.MapPut(string.Empty, async (IMediator mediator, UpdateCommentCommand command) =>
             {
                 var response = await mediator.Send(command);
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
+            comments.MapDelete("{id}", async (IMediator mediator, Guid id) =>
+            {
+                var response = await mediator.Send(new DeleteCommentCommand(id));
                 if (response.IsSuccess)
                 {
                     return Results.Ok(response);
