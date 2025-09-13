@@ -29,6 +29,16 @@ namespace Notero.API.Endpoints
                 }
                 return Results.BadRequest(response);
             });
+
+            comments.MapGet("{id}", async( IMediator mediator ,Guid id) =>
+            {
+                var response = await mediator.Send(new GetCommentByIdQuery(id));
+                if (response.IsSuccess)
+                {
+                    return Results.Ok(response);
+                }
+                return Results.BadRequest(response);
+            });
         }
     }
 }
