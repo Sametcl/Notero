@@ -12,6 +12,7 @@ namespace Notero.Application.Features.Comments.Mappings
             CreateMap<Comment, GetCommentQueryResult>().ReverseMap();
             CreateMap<Comment, CreateCommentCommand>().ReverseMap();
             CreateMap<Comment, GetCommentByIdQueryResult>().ReverseMap();
+            CreateMap<Comment, UpdateCommentCommand>().ReverseMap();
         }
     }
 }
