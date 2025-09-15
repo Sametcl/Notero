@@ -18,8 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\SubComments\Queries\" />
-    <Folder Include="Features\SubComments\Results\" />
     <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Notero.Application.Features.SubComments.Commands;
+using Notero.Application.Features.SubComments.Queries;
+using Notero.Application.Features.SubComments.Results;
 using Notero.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Notero.Application.Features.SubComments.Mappings
         public SubCommentMappingProfile()
         {
             CreateMap<SubComment,CreateSubCommentCommand>().ReverseMap();
+            CreateMap<SubComment,GetAllSubCommentQueryResult>().ReverseMap();
         }
     }
 }
