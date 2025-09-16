@@ -4,7 +4,7 @@ namespace Notero.Application.Contracts.Persistance
 {
     public interface IJwtService
     {
-        Task<GetLoginResponse> GenerateTokenAsync(GetUsersQueryResult result);
+        Task<GetLoginQueryResult> GenerateTokenAsync(GetUsersQueryResult result);
     }
     
 }

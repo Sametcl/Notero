@@ -13,7 +13,7 @@ namespace Notero.Persistance.Concrete
     public class JwtService(UserManager<AppUser> userManager , IOptions<JwtTokenOptions> tokenOptions) : IJwtService
     {
         private readonly JwtTokenOptions jwtTokenOptions = tokenOptions.Value;
-        public async Task<GetLoginResponse> GenerateTokenAsync(GetUsersQueryResult result)
+        public async Task<GetLoginQueryResult> GenerateTokenAsync(GetUsersQueryResult result)
         {
             var user = await userManager.FindByNameAsync(result.UserName);
             SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(jwtTokenOptions.Key));
@@ -38,10 +38,10 @@ namespace Notero.Persistance.Concrete
                     expires: dateTimeNow.AddMinutes(jwtTokenOptions.ExpireInMinutes),
                     signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256)
                 );
-            GetLoginResponse response = new()
+            GetLoginQueryResult response = new()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                ExpirationTime = jwtSecurityToken.ValidTo
+                ExpirationTime = dateTimeNow.AddMinutes(jwtTokenOptions.ExpireInMinutes)
             };
 
             return response;

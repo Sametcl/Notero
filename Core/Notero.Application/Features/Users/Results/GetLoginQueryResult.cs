@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Notero.Application.Features.Users.Results
 {
-    public class GetLoginResponse
+    public class GetLoginQueryResult
     {
         public string Token { get; set; }
         public DateTime ExpirationTime { get; set; }
