@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Notero.Application.Behaviors;
+using Notero.Application.Contracts.Persistance;
 using Notero.Application.Options;
 using System.Reflection;
 
@@ -22,6 +23,7 @@ namespace Notero.Application.Extensions
             services.AddValidatorsFromAssembly(assembly);
 
             services.Configure<JwtTokenOptions>(configuration.GetSection(nameof(JwtTokenOptions)));
+          
         }
     }
 }
